@@ -1,9 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 const cors = require("cors");
 const app = express();
 const path = require("path");
+
+const oauth2Client = new OAuth2(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  "https://developers.google.com/oauthplayground"
+);
+
+oauth2Client.setCredentials({
+  refresh_token: process.env.REFRESH_TOKEN
+});
+const accessToken = oauth2Client.getAccessToken();
 
 require("dotenv").config();
 
@@ -26,11 +39,14 @@ app.get("/api", (req, res) => {
 
 app.post("/api/form", async (req, res) => {
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
+    service: "gmail",
     auth: {
+      type: "OAuth2",
       user: process.env.NODEMAILER_ADDRESS,
-      pass: process.env.NODEMAILER_PASSWORD
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: accessToken
     },
     tls: {
       rejectUnauthorized: false
@@ -44,11 +60,11 @@ app.post("/api/form", async (req, res) => {
     subject: `Portfolio Site || ${req.body.name}, from my Portfolio Site`,
     html: `
             <p style="text-align: center; font-size: 16px">
-              A message from, <strong>${req.body.name}</strong>.
+              A message from <strong>${req.body.name}</strong>.
             </p>
 
             <p style="text-align: center; font-size: 14px">
-              Reply <strong>${req.body.name}</strong> to:
+              Reply to <strong>${req.body.name}</strong>:
               <a href="mailto:${req.body.email}">${req.body.email}</a>
             </p>
 
