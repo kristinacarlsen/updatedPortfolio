@@ -1,0 +1,70 @@
+.fixedFooter {
+    margin-bottom: 100px;
+}
+
+.footText {
+    margin: 0;
+}
+
+.jumbo {
+    text-align: center;
+}
+
+.projects {
+    max-width: 90%;
+}
+
+.k-card {
+    margin: 20px;
+
+}
+
+.k-card-img {
+    border-radius: 10px;
+    box-shadow: 0 0 3px 1px #ccc;
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.k-card-info {
+    margin-top: 10px;
+    min-height: 100px;
+    margin-bottom: 50px;
+}
+
+.k-card-title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.k-card-subtitle {
+    font-size: 16px;
+    margin: 0;
+}
+
+.success-msg {
+    color: green;
+    padding: 10px 15px;
+}
+
+.error-msg {
+    color: red;
+    padding: 10px 15px;
+}
+
+.aboutContainer {
+    position: absolute;
+    height: aut
+}
+
+.aboutInfo {
+    position: absolute;
+    height: auto;
+    width: auto;
+    overflow: hidden;
+}
+
+.profileImg {
+    height: 400px;
+}
