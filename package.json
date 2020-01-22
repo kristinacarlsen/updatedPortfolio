@@ -14,6 +14,7 @@
   "author": "Kristina Carlsen",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.5.0",
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",
     "cors": "^2.8.5",
@@ -22,6 +23,7 @@
     "googleapis": "^47.0.0",
     "node": "^13.6.0",
     "nodemailer": "^6.4.2",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemon": "^2.0.2"
   },
   "devDependencies": {}

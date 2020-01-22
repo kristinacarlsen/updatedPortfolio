@@ -1,35 +1,28 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer");
-const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
+const sgMail = require("@sendgrid/mail");
 const cors = require("cors");
 const app = express();
 const path = require("path");
 
-const oauth2Client = new OAuth2(
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  "https://developers.google.com/oauthplayground"
-);
-
-oauth2Client.setCredentials({
-  refresh_token: process.env.REFRESH_TOKEN
-});
-const accessToken = oauth2Client.getAccessToken();
-
 require("dotenv").config();
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+console.log({ key: process.env.SENDGRID_API_KEY });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(
-  cors({ origin: "https://kristinacarlsen.herokuapp.com", credentials: true })
-);
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// app.use(
+//   cors({ origin: "https://kristinacarlsen.herokuapp.com", credentials: true })
+// );
 
 app.all("/", function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
@@ -38,42 +31,27 @@ app.get("/api", (req, res) => {
 });
 
 app.post("/api/form", async (req, res) => {
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: process.env.NODEMAILER_ADDRESS,
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      refreshToken: process.env.REFRESH_TOKEN,
-      accessToken: accessToken
-    },
-    tls: {
-      rejectUnauthorized: false
-    }
-  });
-
-  let mailOptions = {
-    from: req.body.name,
+  let email = {
     to: process.env.NODEMAILER_ADDRESS,
-    replyTo: req.body.email,
+    from: req.body.email,
     subject: `Portfolio Site || ${req.body.name}, from my Portfolio Site`,
-    html: `
-            <p style="text-align: center; font-size: 16px">
-              A message from <strong>${req.body.name}</strong>.
-            </p>
+    html: `<div>
+    <p style="text-align: center; font-size: 16px">
+    A message from <strong>${req.body.name}</strong>.
+  </p>
 
-            <p style="text-align: center; font-size: 14px">
-              Reply to <strong>${req.body.name}</strong>:
-              <a href="mailto:${req.body.email}">${req.body.email}</a>
-            </p>
+  <p style="text-align: center; font-size: 14px">
+    Reply to <strong>${req.body.name}</strong>:
+    <a href="mailto:${req.body.email}">${req.body.email}</a>
+  </p>
 
-            <br>
-            <Strong>Message:</strong>
-            <p style="font-size: 15px">${req.body.message}</p>`
+  <br>
+  <Strong>Message:</strong>
+  <p style="font-size: 15px">${req.body.message}</p>
+    </div>`
   };
 
-  await transporter.sendMail(mailOptions, function(err, data) {
+  await sgMail.send(email, function(err, data) {
     if (err) {
       console.log("Error: ", err);
     } else {
