@@ -8,7 +8,6 @@ const path = require("path");
 require("dotenv").config();
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-console.log({ key: process.env.SENDGRID_API_KEY });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
