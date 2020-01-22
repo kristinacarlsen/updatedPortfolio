@@ -50,15 +50,13 @@ app.post("/api/form", async (req, res) => {
     </div>`
   };
 
-  await sgMail.send(email, function(err, data) {
-    if (err) {
-      console.log("Error: ", err);
-    } else {
-      console.log("Email sent successfully");
-    }
-  });
-
-  await res.status(200).json({ msg: "email sent" });
+  try {
+    await sgMail.send(email);
+    res.status(200).json({ msg: "email sent" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: "error" });
+  }
 });
 
 if (process.env.NODE_ENV === "production") {
