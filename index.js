@@ -31,7 +31,8 @@ app.get("/api", (req, res) => {
 
 app.post("/api/form", async (req, res) => {
   let email = {
-    to: process.env.NODEMAILER_ADDRESS,
+    to: "kristida84@gmail.com",
+    cc: "kristida84@gmail.com",
     from: req.body.email,
     subject: `Portfolio Site || ${req.body.name}, from my Portfolio Site`,
     html: `<div>
