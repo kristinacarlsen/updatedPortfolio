@@ -7,17 +7,18 @@ const path = require("path");
 
 require("dotenv").config();
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(
-  cors({ origin: "https://kristinacarlsen.herokuapp.com", credentials: true })
-);
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// app.use(
+//   cors({ origin: "https://kristinacarlsen.herokuapp.com", credentials: true })
+// );
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.all("/", function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"

@@ -8,7 +8,7 @@ import Nav from "react-bootstrap/Nav";
 import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
-import Contact from "./Pages/Contact";
+import ContactMe from "./Pages/ContactA";
 
 class App extends React.Component {
   constructor(props) {
@@ -75,10 +75,7 @@ class App extends React.Component {
             render={() => <About title={this.state.about.title} />}
           ></Route>
 
-          <Route
-            path="/contact"
-            render={() => <Contact title={this.state.contact.title} />}
-          ></Route>
+          <Route path="/contact" render={() => <ContactMe />}></Route>
           <Footer />
         </Container>
       </Router>

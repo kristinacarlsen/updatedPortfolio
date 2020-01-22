@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import "./index.css";
 
-// axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL = "https://kristinacarlsen.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "https://kristinacarlsen.herokuapp.com";
 
 ReactDOM.render(<App />, document.getElementById("root"));
