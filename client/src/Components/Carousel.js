@@ -73,7 +73,7 @@ class Carousel extends React.Component {
 
   render() {
     return (
-      <Container className="projects" fluid={true}>
+      <Container className="projects mobileWidth" fluid={true}>
         <Row className="justify-content-around">
           {this.makeItems(this.state.items)}
         </Row>

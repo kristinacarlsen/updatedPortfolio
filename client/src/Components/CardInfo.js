@@ -10,13 +10,13 @@ function CardInfo(props) {
 
       <p className="k-card-subtitle">{props.subtitle}</p>
 
-      <button>
+      <button className="viewBtn">
         <a href={props.codeLink} target="_blank" rel="noopener noreferrer">
           View Code
         </a>
       </button>
 
-      <button>
+      <button className="viewBtn">
         <a href={props.siteLink} target="_blank" rel="noopener noreferrer">
           View Site
         </a>

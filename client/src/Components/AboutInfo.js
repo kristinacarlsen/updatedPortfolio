@@ -10,7 +10,7 @@ function AboutInfo() {
   return (
     <Content>
       <Container>
-        <Row className="aboutInfo justify-content-center">
+        <Row className="aboutInfo mobileWidth justify-content-center">
           <Col xs="auto">
             <img
               className="profileImg"
@@ -18,7 +18,7 @@ function AboutInfo() {
               alt="Kristina Carlsen"
             />
           </Col>
-          <Col className="fixedFooter">
+          <Col className="aboutText fixedFooter">
             <p>
               I fell in love with web development because it's like putting
               together a puzzle that I get to create. I started my career as an
@@ -46,7 +46,7 @@ function AboutInfo() {
             </p>
             <p>I want to hear about what you're working on. Contact me here:</p>
             <Link to="/contact">
-              <button>Message Me</button>
+              <button className="msgBtn">Message Me</button>
             </Link>
           </Col>
         </Row>

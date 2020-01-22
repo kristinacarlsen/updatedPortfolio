@@ -7,12 +7,17 @@ import Col from "react-bootstrap/Col";
 
 function Jumbo(props) {
   return (
-    <Jumbotron className="bg-transparent jumbotron-fluid p-0" fluid={true}>
+    <Jumbotron
+      className="jumbo bg-transparent jumbotron-fluid p-0"
+      fluid={true}
+    >
       <Container>
-        <Row className="justify-content-center py-3 jumbo">
+        <Row className="justify-content-center py-3 mobileMax">
           <Col md={8} sm={12}>
             {props.title && (
-              <h1 className="display-1 font-weight-bolder">{props.title}</h1>
+              <h1 className="jumboCol display-1 font-weight-bolder">
+                {props.title}
+              </h1>
             )}
 
             {props.subtitle && <h3 className="display-5">{props.subtitle}</h3>}

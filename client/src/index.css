@@ -68,3 +68,51 @@
 .profileImg {
     height: 400px;
 }
+
+.viewBtn {
+    background-color: rgb(240, 238, 238);
+    border: none;
+    border-radius: 50%;
+}
+
+.msgBtn {
+    background-color: rgb(240, 238, 238);
+    border: none;
+    color: rgb(38, 112, 106);
+}
+
+.viewBtn a {
+    color: rgb(38, 112, 106);
+    text-decoration: none;
+}
+
+.viewBtn a:hover {
+    color: rgb(207, 121, 150);
+}
+
+@media (min-width: 300px) and (max-width: 600px) {
+    body {
+        text-align: center;
+    }
+
+    .mobileWidth {
+        width: 100%;
+    }
+
+    .mobileMax {
+        max-width: 100%;
+    }
+
+    .jumbo {
+        margin: auto;
+    }
+
+    .jumboCol {
+        font-size: 20vw;
+    }
+
+    .aboutText {
+        padding: 5%;
+        text-align: left;
+    }
+}

@@ -8,7 +8,7 @@ function Card(props) {
       onClick={e => props.click(props.item)}
     >
       <img
-        className="k-card-img"
+        className="k-card-img mobileWidth"
         src={props.item.imgSrc}
         alt={props.item.imgSrc}
       />
